@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { DiffLayout } from '@/components/diff/DiffLayout'
 import { getWebAppJsonLd, jsonLdScripts, seo } from '@/lib/seo'
 
 export const Route = createFileRoute('/')({
@@ -16,9 +17,5 @@ export const Route = createFileRoute('/')({
 })
 
 function HomePage() {
-  return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Online Diff Tool</h1>
-    </main>
-  )
+  return <DiffLayout />
 }
