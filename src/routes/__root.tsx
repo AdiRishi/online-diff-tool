@@ -2,7 +2,9 @@ import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-r
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
-import appCss from '../styles.css?url'
+import tailwindCss from '@/global-styles/tailwind.css?url'
+import { ThemeProvider } from '@/components/theme-provider'
+import { getThemeServerFn } from '@/lib/theme'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -14,29 +16,33 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      {
-        title: 'Online Diff Tool',
-      },
+      { name: 'theme-color', content: '#6366f1' },
+      { name: 'author', content: 'Online Diff Tool' },
     ],
     links: [
       {
         rel: 'stylesheet',
-        href: appCss,
+        href: tailwindCss,
       },
     ],
   }),
 
+  loader: () => getThemeServerFn(),
   component: RootComponent,
 })
 
 function RootComponent() {
+  const theme = Route.useLoaderData()
+
   return (
-    <html lang="en">
+    <html lang="en" className={theme}>
       <head>
         <HeadContent />
       </head>
       <body>
-        <Outlet />
+        <ThemeProvider theme={theme}>
+          <Outlet />
+        </ThemeProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
