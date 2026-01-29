@@ -11,7 +11,7 @@ export const Route = createFileRoute('/demo/start/api-request')({
 })
 
 function Home() {
-  const [names, setNames] = useState<Array<string>>([])
+  const [names, setNames] = useState<string[]>([])
 
   useEffect(() => {
     getNames().then(setNames)
