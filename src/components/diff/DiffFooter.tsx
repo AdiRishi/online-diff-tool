@@ -1,6 +1,6 @@
 import { Check, FileText } from 'lucide-react'
 
-import  { type CursorPosition, type DiffSummary } from './types'
+import { type CursorPosition, type DiffSummary } from './types'
 import { cn } from '@/lib/utils'
 
 interface DiffFooterProps {
